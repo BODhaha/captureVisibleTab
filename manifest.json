@@ -1,0 +1,19 @@
+{
+  "name": "tab.captureVisible",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "获取屏幕截图",
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_icon": "camera.png",
+    "default_title": "Take a screen shot!"
+  },
+  "content_scripts": [{
+    "matches": ["http://*/", "https://*/*"],
+    "js": ["content.js"]
+  }],
+  "permissions": ["tabs", "<all_urls>", "activeTab"]
+}
