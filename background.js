@@ -46,7 +46,7 @@ var Capturer = {
           act: 'screenshot',
           data: Capturer.screenshotUrl
         }, function () {})
-        Capturer.postImg()
+        // Capturer.postImg()
       }
       blockImg.src = img
     })
