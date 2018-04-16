@@ -18,7 +18,7 @@ chrome.extension.onMessage.addListener(function (message, sender, resCallback) {
   }
   if (message.act == 'screenshot') {
     console.log('aaa: ', message.data)
-    sendImg(message.data)
+    // sendImg(message.data)
   }
   if (message.act == 'a')  {
     console.log(message)
