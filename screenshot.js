@@ -4,6 +4,15 @@ var canvas = document.getElementById('canvas')
 var ctx = canvas.getContext('2d')
 var width, height
 var imgData = null
+var JSESSIONID = null
+
+chrome.cookies.get({
+  url: 'http://guangeryi.6655.la:4080/',
+  name: 'JSESSIONID'
+}, function(cookie){
+  JSESSIONID = cookie.value
+  console.log('cookie.value: ', cookie.value, JSESSIONID);
+})
 
 if (img) {
   var imgObj = new Image()
