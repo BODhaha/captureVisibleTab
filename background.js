@@ -58,7 +58,7 @@ var Capturer = {
     //   data: canvas
     // }, function () {})
     var screenshotUrl = canvas.toDataURL()
-    var viewTabUrl = chrome.extension.getURL('screenshot.html?id=' + id++)
+    var viewTabUrl = chrome.extension.getURL('screenshot.html')
     chrome.tabs.create({
       url: viewTabUrl
     }, function (tab) {
@@ -72,13 +72,40 @@ var Capturer = {
         for (var i = 0; i < views.length; i++) {
           var view = views[i];
           if (view.location.href == viewTabUrl) {
-            view.setScreenshotUrl(screenshotUrl);
+            view.setScreenshotUrl({
+              url: screenshotUrl,
+              width: Capturer.clientWidth,
+              height: Capturer.clientHeight
+            })
+            // sendImg(screenshotUrl)
+            // view.setCanvas(canvas)
             break;
           }
         }
       }
       chrome.tabs.onUpdated.addListener(addSnapshotImageToTab)
     })
+  }
+}
+
+function sendImg (img) {
+  // http://localhost:8099/file/uploadLocal2
+
+  var formData = new FormData()
+  formData.append('img', img)
+  var request = new XMLHttpRequest()
+  var url = 'http://localhost:8099/file/uploadLocal2'
+  request.open('POST', url)
+  request.send(formData)
+  request.onreadystatechange = function () {
+    if (request.readyState == 4) {
+      if (request.status == 200) {
+        chrome.tabs.sendMessage(Capturer.tabId, {
+          act: 'aa',
+          data: request
+        }, function () {})
+      }
+    }
   }
 }
 

@@ -17,7 +17,6 @@ chrome.extension.onMessage.addListener(function (message, sender, resCallback) {
     resCallback(pageSize);
   }
   if (message.act == 'screenshot') {
-    console.log('aaa: ', message.data)
     // sendImg(message.data)
   }
   if (message.act == 'a')  {

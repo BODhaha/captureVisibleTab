@@ -15,5 +15,5 @@
     "matches": ["http://*/", "https://*/*"],
     "js": ["content.js"]
   }],
-  "permissions": ["tabs", "<all_urls>", "activeTab"]
+  "permissions": ["tabs", "<all_urls>", "activeTab", "storage"]
 }
