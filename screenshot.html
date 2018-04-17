@@ -1,19 +1,43 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="icon_font/iconfont.css">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div class="header">
-      <div class="toolbar"></div>
+    <div id="header">
+      <div class="toolbar">
+        <ul>
+          <li class="tool-icon btn-crop" title="裁剪">
+            <i class="icon iconfont icon-caijian"></i>
+          </li>
+          <li class="tool-icon btn-rectangle" title="矩形">
+            <i class="icon iconfont icon-juxing"></i>
+          </li>
+          <li class="tool-icon btn-text" title="字号">
+            <i class="icon iconfont icon-zihao"></i>
+          </li>
+          <li class="tool-icon btn-color" title="颜色">
+            <span></span>
+          </li>
+          <li class="tool-icon btn-undo" title="撤销">
+            <i class="icon iconfont icon-chexiaofanhuichehuishangyibu"></i>
+          </li>
+        </ul>
+      </div>
       <div class="save"></div>
       <div class="close-btn"></div>
     </div>
-    <div class="canvas-box">
+    <div id="canvas-box">
       <canvas id="canvas"></canvas>
-      <img id="target" src="white.png">
     </div>
+    <div id="submit">
+      <form>
+          <textarea></textarea>
+          <button>提交</button>
+      </form>
 
+    </div>
     <script src="screenshot.js"></script>
   </body>
 </html>

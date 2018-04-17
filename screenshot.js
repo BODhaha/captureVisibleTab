@@ -3,6 +3,7 @@ let img = localStorage.getItem('img') ? JSON.parse(localStorage.getItem('img')) 
 let canvas = document.getElementById('canvas')
 let ctx = canvas.getContext('2d')
 let width, height
+
 if (img) {
   let imgObj = new Image()
   imgObj.src = img.url
@@ -22,5 +23,8 @@ function setScreenshotUrl(obj) {
   width = obj.width
   height = obj.height
   ctx.drawImage(imgObj, 0, 0)
+  imgObj.onload = function () {
+    ctx.drawImage(imgObj, 0, 0)
+  }
 }
 
