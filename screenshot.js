@@ -76,11 +76,18 @@ function sendImg (img, textarea) {
         console.log('request: ', request)
         let url = JSON.parse(request.response).url
         console.log('url: ', url, textarea)
-        // chrome.tabs.sendMessage(Capturer.tabId, {
-        //   act: 'aa',
-        //   data: request
-        // }, function () {})
+        var params = {
+          fdName: textarea,
+          fdAtt: '<img src="'+ url +'"/>'
+        }
+        sendMsg(params, 'http://guangeryi.6655.la:4080/admin2/sysToken/feedback')
       }
     }
   }
+}
+
+function sendMsg (params, url) {
+  $.post(url, params, function (res) {
+    console.log(res)
+  })
 }
