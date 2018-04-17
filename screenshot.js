@@ -7,7 +7,7 @@ var imgData = null
 var JSESSIONID = null
 
 chrome.cookies.get({
-  url: 'http://guangeryi.6655.la:4080/',
+  url: 'http://192.168.0.252/',
   name: 'JSESSIONID'
 }, function(cookie){
   JSESSIONID = cookie.value
@@ -76,7 +76,7 @@ function sendImg (img, textarea) {
   var formData = new FormData()
   formData.append('img', img)
   var request = new XMLHttpRequest()
-  var url = 'http://guangeryi.6655.la:4080/file/uploadLocal2'
+  var url = 'http://192.168.0.252/file/uploadLocal2'
   request.open('POST', url)
   request.send(formData)
   request.onreadystatechange = function () {
@@ -89,14 +89,37 @@ function sendImg (img, textarea) {
           fdName: textarea,
           fdAtt: '<img src="'+ url +'"/>'
         }
-        sendMsg(params, 'http://guangeryi.6655.la:4080/admin2/sysToken/feedback')
+        sendMsg(params, 'http://192.168.0.252/admin2/sysToken/feedback')
       }
     }
   }
 }
 
 function sendMsg (params, url) {
-  $.post(url, params, function (res) {
-    console.log(res)
-  })
+  console.log(params)
+  $.ajax({
+    //请求类型，这里为POST
+    type: 'POST',
+    //你要请求的api的URL
+    url: url ,
+    //必要的时候需要用JSON.stringify() 将JSON对象转换成字符串
+    data: JSON.stringify(params), //data: {key:value},
+    //添加额外的请求头
+    headers : {
+      'Content-Type': 'application/json;charset=UTF-8',
+      'JSESSIONID': JSESSIONID,
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    //请求成功的回调函数
+    success: function(data){
+       //函数参数 "data" 为请求成功服务端返回的数据
+       if (data.code === 0) {
+         alert(data.content)
+       }
+       if (data.code === 1) {
+         alert(data.content)
+       }
+       console.log('成功: ', data)
+    },
+  });
 }

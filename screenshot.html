@@ -7,7 +7,7 @@
   <body>
     <div id="header">
       <div class="toolbar">
-        <ul>
+        <ul id="toolbar-list">
           <li class="tool-icon btn-crop" title="裁剪">
             <i class="icon iconfont icon-caijian"></i>
           </li>
@@ -33,12 +33,19 @@
     </div>
     <div id="submit">
       <form>
-          <textarea id="textarea"></textarea>
+          <textarea id="textarea">
+              【问题描述】：
+
+
+
+              【建议方案】：
+          </textarea>
           <div id="submit-btn">提交</div>
       </form>
 
     </div>
     <script src="jquery-3.3.1.min.js"></script>
     <script src="screenshot.js"></script>
+    <script src="toolbar.js"></script>
   </body>
 </html>
